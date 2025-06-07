@@ -1,14 +1,9 @@
-# Evaluasi Proyek Sistem Rekomendasi Musik
+# Evaluasi Project Predictive Analytic Sistem Rekomendasi Musik
 
 ## Metrik Evaluasi yang Digunakan
 
 ### 1. Precision@K  
 Precision@K adalah metrik yang mengukur proporsi item relevan di antara K item teratas yang direkomendasikan oleh sistem.
-
-**Rumus:**  
-$$
-\text{Precision@K} = \frac{\text{Jumlah item relevan dalam K rekomendasi teratas}}{K}
-$$
 
 **Fungsi:**  
 Mengukur ketepatan rekomendasi, yaitu seberapa banyak rekomendasi yang diberikan benar-benar sesuai dengan preferensi pengguna.
@@ -18,11 +13,6 @@ Mengukur ketepatan rekomendasi, yaitu seberapa banyak rekomendasi yang diberikan
 ### 2. Recall@K  
 Recall@K mengukur proporsi item relevan yang berhasil direkomendasikan dalam K item teratas dari total item relevan yang ada.
 
-**Rumus:**  
-$$
-\text{Recall@K} = \frac{\text{Jumlah item relevan dalam K rekomendasi teratas}}{\text{Total item relevan yang ada}}
-$$
-
 **Fungsi:**  
 Mengukur kelengkapan rekomendasi, yaitu seberapa banyak item yang disukai pengguna berhasil ditemukan oleh sistem.
 
@@ -30,8 +20,6 @@ Mengukur kelengkapan rekomendasi, yaitu seberapa banyak item yang disukai penggu
 
 ### Alasan Pemilihan Metrik  
 - Sistem rekomendasi menghasilkan daftar peringkat (Top-K), sehingga metrik yang mengukur performa pada posisi teratas lebih relevan dibanding metrik klasifikasi biasa seperti accuracy atau F1-score.  
-- Precision@K dan Recall@K fokus pada kualitas dan kelengkapan rekomendasi yang benar-benar dilihat pengguna.  
-- Metrik ini umum digunakan dalam evaluasi sistem rekomendasi musik dan sistem informasi.
 
 ---
 
@@ -50,7 +38,6 @@ Misalnya hasil evaluasi yang diperoleh adalah:
 
 ### Implikasi  
 - Sistem rekomendasi sudah efektif dalam menemukan semua item yang disukai pengguna, tetapi rekomendasi perlu dipersempit agar tidak banyak item tidak relevan yang muncul.  
-- Hal ini umum terjadi pada Content-Based Filtering dan Collaborative Filtering jika data interaksi terbatas atau model belum optimal.
 
 ---
 
@@ -58,4 +45,3 @@ Misalnya hasil evaluasi yang diperoleh adalah:
 
 - Precision@K dan Recall@K adalah metrik yang tepat dan relevan untuk mengevaluasi sistem rekomendasi musik.  
 - Hasil evaluasi menunjukkan model sudah mampu menangkap preferensi pengguna dengan baik (Recall tinggi), namun perlu peningkatan agar rekomendasi lebih tepat sasaran (Precision perlu ditingkatkan).  
-- Evaluasi ini menjadi dasar untuk melakukan perbaikan model, misalnya dengan tuning parameter, menambah fitur, atau menggunakan metode hybrid.
