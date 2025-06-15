@@ -13,19 +13,19 @@ Mengapa Masalah Ini Harus Diselesaikan?
 Prediksi dini serangan jantung dapat meningkatkan peluang pasien untuk mendapatkan intervensi medis tepat waktu, mengurangi angka kematian, dan menekan biaya perawatan. Model prediktif berbasis machine learning memungkinkan identifikasi pasien berisiko tinggi secara efisien, terutama di fasilitas kesehatan dengan sumber daya terbatas. Selain itu, model ini dapat memberikan wawasan tentang faktor risiko utama, membantu pencegahan dan edukasi kesehatan.
 
 ### 2. Business Understanding
-# Problem Statements
+Problem Statements
 - Bagaimana cara memprediksi keberadaan serangan jantung (positif/negatif) berdasarkan fitur klinis seperti usia, jenis kelamin, detak jantung, tekanan darah, kadar gula darah, CK-MB, dan troponin?   
 Data klinis kompleks dan memerlukan analisis canggih untuk menghasilkan prediksi yang akurat, yang dapat membantu tenaga medis dalam diagnosis dini.  
 
 - Bagaimana cara memastikan model prediktif memiliki performa yang optimal, untuk mendukung aplikasi medis?   
 Dalam konteks medis, false negatives (gagal mendeteksi serangan jantung) dapat berakibat fatal, sehingga model harus dioptimalkan untuk recall tinggi tanpa mengorbankan precision.
 
-# Goals   
+Goals   
 - Membangun model machine learning yang dapat memprediksi keberadaan serangan jantung dengan akurasi, precision, dan recall yang tinggi berdasarkan fitur klinis. 
 
 - Memilih model terbaik yang andal untuk konteks medis, dengan fokus pada minimisasi false negatives dan interpretasi faktor risiko utama.
 
-# Solution Statements
+Solution Statements
 - Menggunakan algoritma Logistic Regression sebagai baseline model karena sederhana dan kemampuan interpretasi yang baik dalam klasifikasi biner. Model akan dievaluasi menggunakan metrik akurasi, precision, recall, F1-score, dan AUC-ROC.  
 
 - Menerapkan Gradient Boosting (XGBoost) untuk meningkatkan performa dengan memanfaatkan pendekatan ensemble yang kuat.   
@@ -33,9 +33,26 @@ Dalam konteks medis, false negatives (gagal mendeteksi serangan jantung) dapat b
  
 
 ### 3. Data Understanding
-Dataset yang digunakan berasal dari Kaggle - Heart Disease Classification Dataset (https://www.kaggle.com/datasets/bharath011/heart-disease-classification-dataset/data). Beberapa fitur penting antara lain :
+Dataset yang digunakan adalah Heart Disease Classification Dataset dengan 1319 sampel dan 9 kolom (8 fitur input, 1 kolom target). Tidak ditemukan data duplikat dan missing value. Dataset ini mencakup faktor risiko dan biomarker yang berkontribusi pada serangan jantung.   
+Sumber Dataset: Kaggle - Heart Disease Classification Dataset (https://www.kaggle.com/datasets/bharath011/heart-disease-classification-dataset/data).
+
 - **Numerik** : `age`, `impulse`, `pressurehight`, `pressurelow`, `glucose`, `kcm`, `troponin`
 - **Target** : `class` yang dikonversi ke format numerik: 0 (negative), 1 (positive)
+
+Struktur Dataset
+
+| Kolom            | Deskripsi                          |
+|------------------|------------------------------------|
+| age              | Umur pasien                        |
+| gender           | Jenis kelamin                      |
+| impulse          | Denyut jantung                     |
+| pressurehight    | Tekanan darah atas                 |
+| pressurelow      | Tekanan darah bawah                |
+| glucose          | Kadar gula darah                   |
+| kcm              | Kalium                             |
+| troponin         | Kadar troponin                     |
+| class            | Target : 0 (negatif), 1 (positif)  |
+
 
 ### 4. Exploratory Data Analysis (EDA)
 - Visualisasi korelasi antar fitur numerik menggunakan heatmap.
@@ -79,18 +96,4 @@ Secara keseluruhan, dari hasil tersebut menunjukkan bahwa model XGBoost adalah m
 - imbalanced-learn (SMOTE)
 
 ---
-
-## 📁 Struktur Dataset
-
-| Kolom            | Deskripsi                          |
-|------------------|------------------------------------|
-| age              | Umur pasien                        |
-| gender           | Jenis kelamin                      |
-| impulse          | Denyut jantung                     |
-| pressurehight    | Tekanan darah atas                 |
-| pressurelow      | Tekanan darah bawah                |
-| glucose          | Kadar gula darah                   |
-| kcm              | Kalium                             |
-| troponin         | Kadar troponin                     |
-| class            | Target : 0 (negatif), 1 (positif)  |
 
