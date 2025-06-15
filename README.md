@@ -1,47 +1,88 @@
-# Evaluasi Project Predictive Analytic Sistem Rekomendasi Musik
+# Heart Attack Prediction using Logistic Regression and XGBoost
 
-## Metrik Evaluasi yang Digunakan
-
-### 1. Precision@K  
-Precision@K adalah metrik yang mengukur proporsi item relevan di antara K item teratas yang direkomendasikan oleh sistem.
-
-**Fungsi:**  
-Mengukur ketepatan rekomendasi, yaitu seberapa banyak rekomendasi yang diberikan benar-benar sesuai dengan preferensi pengguna.
+Proyek ini bertujuan untuk memprediksi kemungkinan serangan jantung berdasarkan data medis pasien menggunakan algoritma **Logistic Regression** dan **XGBoost**, dengan penanganan ketidakseimbangan kelas menggunakan **SMOTE**. Evaluasi dilakukan untuk memilih model terbaik berdasarkan akurasi dan metrik lainnya.
 
 ---
 
-### 2. Recall@K  
-Recall@K mengukur proporsi item relevan yang berhasil direkomendasikan dalam K item teratas dari total item relevan yang ada.
+## Tahapan Analisis
 
-**Fungsi:**  
-Mengukur kelengkapan rekomendasi, yaitu seberapa banyak item yang disukai pengguna berhasil ditemukan oleh sistem.
+### 1. Domain Proyek
+Penyakit kardiovaskular (CVD) adalah penyebab kematian nomor satu di dunia, menyumbang sekitar 17,9 juta kematian setiap tahun menurut World Health Organization (WHO). Serangan jantung, salah satu manifestasi utama CVD, sering terjadi secara mendadak dan memerlukan deteksi dini untuk mencegah konsekuensi fatal. Faktor risiko seperti usia, tekanan darah, kadar gula darah, serta biomarker seperti CK-MB dan troponin memainkan peran penting dalam diagnosis. Dengan kemajuan machine learning, data klinis dapat digunakan untuk memprediksi risiko serangan jantung secara akurat, mendukung tenaga medis dalam pengambilan keputusan cepat.
+
+Mengapa Masalah Ini Harus Diselesaikan?
+Prediksi dini serangan jantung dapat meningkatkan peluang pasien untuk mendapatkan intervensi medis tepat waktu, mengurangi angka kematian, dan menekan biaya perawatan. Model prediktif berbasis machine learning memungkinkan identifikasi pasien berisiko tinggi secara efisien, terutama di fasilitas kesehatan dengan sumber daya terbatas. Selain itu, model ini dapat memberikan wawasan tentang faktor risiko utama, membantu pencegahan dan edukasi kesehatan.
+
+### 2. Business Understanding
+Tujuan proyek:
+- Membangun model prediktif untuk mengklasifikasikan apakah seorang pasien berisiko mengalami serangan jantung atau tidak.
+- Membandingkan kinerja Logistic Regression (model interpretable) dan XGBoost (model kompleks & kuat).
+- Menangani ketidakseimbangan data dengan teknik oversampling (SMOTE).
+
+### 3. Data Understanding
+Dataset yang digunakan berasal dari Kaggle - Heart Disease Classification Dataset (https://www.kaggle.com/datasets/bharath011/heart-disease-classification-dataset/data). Beberapa fitur penting antara lain :
+- **Numerik** : `age`, `impulse`, `pressurehight`, `pressurelow`, `glucose`, `kcm`, `troponin`
+- **Target** : `class` yang dikonversi ke format numerik: 0 (negative), 1 (positive)
+
+### 4. Exploratory Data Analysis (EDA)
+- Visualisasi korelasi antar fitur numerik menggunakan heatmap.
+- Distribusi kelas target menunjukkan ketidakseimbangan signifikan antara kelas positif dan negatif.
+- Tidak ditemukan data duplikat.
+
+### 5. Data Preparation
+- **Renaming kolom** : `impluse` → `impulse`
+- **Normalisasi fitur** menggunakan `StandardScaler`
+- **SMOTE** diterapkan pada data latih untuk menyeimbangkan jumlah kelas
+- Split data menjadi 80% train dan 20% test
+
+### 6. Modeling
+Model yang dibangun :
+- **Logistic Regression** dengan parameter awal (`C=1.0`, `random_state=42`)
+- **XGBoost Classifier** dengan parameter awal (`n_estimators=100`, `max_depth=6`, `learning_rate=0.1`)
+
+### 7. Evaluation
+Evaluasi dilakukan pada data uji, dengan hasil sebagai berikut:
+
+#### Logistic Regression
+- **Accuracy** : 79%
+- **AUC-ROC** : 0.88
+- **F1-Score Positif** : 0.81
+
+#### XGBoost
+- **Accuracy** : 98%
+- **AUC-ROC** : 0.99
+- **F1-Score Positif** : 0.99
+- Prediksi sangat presisi dan recall tinggi untuk kedua kelas
+
+#### Kesimpulan:
+Secara keseluruhan, dari hasil tersebut menunjukkan bahwa model XGBoost adalah model yang lebih bagus dibandingkan model Logistic Regression untuk dataset ini setelah balancing data dengan menggunakan teknik SMOTE. Model XGBoost tidak hanya akurat, tetapi juga seimbang dalam mengenali kedua kelas.
+---
+
+## Tools & Library
+
+- Python (Pandas, Seaborn, Matplotlib)
+- Scikit-learn (LogisticRegression, train_test_split, StandardScaler, evaluation metrics)
+- XGBoost
+- imbalanced-learn (SMOTE)
 
 ---
 
-### Alasan Pemilihan Metrik  
-- Sistem rekomendasi menghasilkan daftar peringkat (Top-K), sehingga metrik yang mengukur performa pada posisi teratas lebih relevan dibanding metrik klasifikasi biasa seperti accuracy atau F1-score.  
+## 📁 Struktur Dataset
+
+| Kolom            | Deskripsi                          |
+|------------------|------------------------------------|
+| age              | Umur pasien                        |
+| gender           | Jenis kelamin                      |
+| impulse          | Denyut jantung                     |
+| pressurehight    | Tekanan darah atas                 |
+| pressurelow      | Tekanan darah bawah                |
+| glucose          | Kadar gula darah                   |
+| kcm              | Kalium                             |
+| troponin         | Kadar troponin                     |
+| class            | Target : 0 (negatif), 1 (positif)  |
 
 ---
 
-## Penjelasan Hasil Proyek Berdasarkan Metrik Evaluasi
-
-Misalnya hasil evaluasi yang diperoleh adalah:  
-- Precision@5 (Content-Based) = 0.2  
-- Recall@5 (Content-Based) = 1.0  
-- Precision@5 (Collaborative Filtering) = 0.2  
-- Recall@5 (Collaborative Filtering) = 1.0  
-
-### Interpretasi  
-- **Recall@5 = 1.0** menunjukkan bahwa semua item yang relevan berhasil masuk ke dalam rekomendasi Top-5, artinya sistem tidak melewatkan item penting bagi pengguna.  
-- **Precision@5 = 0.2** menunjukkan bahwa hanya 20% dari rekomendasi Top-5 yang benar-benar relevan, sisanya kurang tepat atau tidak sesuai preferensi pengguna.  
-- Dengan kata lain, sistem sudah sangat baik dalam menangkap preferensi pengguna (Recall tinggi), tetapi masih perlu perbaikan agar rekomendasi lebih fokus dan relevan (Precision rendah).
-
-### Implikasi  
-- Sistem rekomendasi sudah efektif dalam menemukan semua item yang disukai pengguna, tetapi rekomendasi perlu dipersempit agar tidak banyak item tidak relevan yang muncul.  
-
----
-
-## Kesimpulan
-
-- Precision@K dan Recall@K adalah metrik yang tepat dan relevan untuk mengevaluasi sistem rekomendasi musik.  
-- Hasil evaluasi menunjukkan model sudah mampu menangkap preferensi pengguna dengan baik (Recall tinggi), namun perlu peningkatan agar rekomendasi lebih tepat sasaran (Precision perlu ditingkatkan).  
+## Menjalankan Proyek
+Install dependensi:
+   ```bash
+   pip install pandas seaborn matplotlib scikit-learn xgboost imbalanced-learn
