@@ -80,9 +80,3 @@ Secara keseluruhan, dari hasil tersebut menunjukkan bahwa model XGBoost adalah m
 | troponin         | Kadar troponin                     |
 | class            | Target : 0 (negatif), 1 (positif)  |
 
----
-
-## Menjalankan Proyek
-Install dependensi:
-   ```bash
-   pip install pandas seaborn matplotlib scikit-learn xgboost imbalanced-learn
