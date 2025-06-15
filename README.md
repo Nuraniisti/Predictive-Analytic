@@ -13,10 +13,24 @@ Mengapa Masalah Ini Harus Diselesaikan?
 Prediksi dini serangan jantung dapat meningkatkan peluang pasien untuk mendapatkan intervensi medis tepat waktu, mengurangi angka kematian, dan menekan biaya perawatan. Model prediktif berbasis machine learning memungkinkan identifikasi pasien berisiko tinggi secara efisien, terutama di fasilitas kesehatan dengan sumber daya terbatas. Selain itu, model ini dapat memberikan wawasan tentang faktor risiko utama, membantu pencegahan dan edukasi kesehatan.
 
 ### 2. Business Understanding
-Tujuan proyek:
-- Membangun model prediktif untuk mengklasifikasikan apakah seorang pasien berisiko mengalami serangan jantung atau tidak.
-- Membandingkan kinerja Logistic Regression (model interpretable) dan XGBoost (model kompleks & kuat).
-- Menangani ketidakseimbangan data dengan teknik oversampling (SMOTE).
+# Problem Statements
+- Bagaimana cara memprediksi keberadaan serangan jantung (positif/negatif) berdasarkan fitur klinis seperti usia, jenis kelamin, detak jantung, tekanan darah, kadar gula darah, CK-MB, dan troponin?   
+Data klinis kompleks dan memerlukan analisis canggih untuk menghasilkan prediksi yang akurat, yang dapat membantu tenaga medis dalam diagnosis dini.  
+
+- Bagaimana cara memastikan model prediktif memiliki performa yang optimal, untuk mendukung aplikasi medis?   
+Dalam konteks medis, false negatives (gagal mendeteksi serangan jantung) dapat berakibat fatal, sehingga model harus dioptimalkan untuk recall tinggi tanpa mengorbankan precision.
+
+# Goals   
+- Membangun model machine learning yang dapat memprediksi keberadaan serangan jantung dengan akurasi, precision, dan recall yang tinggi berdasarkan fitur klinis. 
+
+- Memilih model terbaik yang andal untuk konteks medis, dengan fokus pada minimisasi false negatives dan interpretasi faktor risiko utama.
+
+# Solution Statements
+- Menggunakan algoritma Logistic Regression sebagai baseline model karena sederhana dan kemampuan interpretasi yang baik dalam klasifikasi biner. Model akan dievaluasi menggunakan metrik akurasi, precision, recall, F1-score, dan AUC-ROC.  
+
+- Menerapkan Gradient Boosting (XGBoost) untuk meningkatkan performa dengan memanfaatkan pendekatan ensemble yang kuat.   
+- Hyperparameter tuning akan dilakukan untuk optimasi.
+ 
 
 ### 3. Data Understanding
 Dataset yang digunakan berasal dari Kaggle - Heart Disease Classification Dataset (https://www.kaggle.com/datasets/bharath011/heart-disease-classification-dataset/data). Beberapa fitur penting antara lain :
