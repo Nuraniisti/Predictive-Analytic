@@ -9,7 +9,7 @@ Prediksi dini serangan jantung dapat meningkatkan peluang pasien untuk mendapatk
 
 Referensi :   
 [1] World Health Organization, "Cardiovascular diseases (CVDs)," WHO, 2021. [Online]. Available: https://www.who.int/news-room/fact-sheets/detail/cardiovascular-diseases-(cvds).      
-[2] R. Shouval et al., "Machine learning for prediction of 30-day mortality in patients with acute myocardial infarction," European Heart Journal, vol. 40, no. 14, pp. 1153–1161, 2019, doi: 10.1093/eurheartj/ehz057.
+[2] N. L. K. A. Arsani, N. P. D. S. Wahyuni, N. N. M. Agustin, and M. Budiawan, “Deteksi Dini dan Pencegahan Penyakit Kardiovaskular,” Proceeding Senadimas Undiksha, vol. 1, no. 1, pp. 663–668, 2022.
 
 
 ## Business Understanding
