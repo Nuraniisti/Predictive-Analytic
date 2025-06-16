@@ -151,7 +151,7 @@ Distribusi kelas
 ## Data Preparation
 Melakukan standarisasi numerik untuk memastikan semua fitur memiliki skala yang seragam dengan mean 0 dan standar deviasi 1, sehingga algoritma machine learning seperti Logistic Regression atau XGBoost dapat bekerja secara optimal tanpa dipengaruhi oleh perbedaan skala asli fitur seperti age, impulse, pressurehight, pressurelow, glucose, kcm, dan troponin.
 
-Pemisahan fitur dan target juga pembagian data train dan data test menjadi 80% train dan 20% test
+Pemisahan fitur dan target juga pembagian data train dan data test menjadi 80% train dan 20% test    
 `X = df.drop('class', axis=1)`
 `y = df['class']`
 
@@ -183,7 +183,7 @@ Jumlah total data setelah SMOTE : 1294
 |         647         |         647        |
 
 ### 6. Modeling
-**Logistic Regression** dengan parameter :
+**Logistic Regression** dengan parameter :    
 `lr_model = LogisticRegression(C=1.0, random_state=42)`
 `lr_model.fit(X_train_balanced, y_train_balanced)`
 
@@ -202,7 +202,7 @@ Cara kerja :
 Probabilitas ini dibandingkan dengan threshold (biasanya 0.5) untuk menentukan kelas.
 
   
-**XGBoost Classifier** dengan parameter : 
+**XGBoost Classifier** dengan parameter :     
 `xgb_model = XGBClassifier(n_estimators=100, learning_rate=0.1, max_depth=6, random_state=42)`
 `xgb_model.fit(X_train_balanced, y_train_balanced)`
 
