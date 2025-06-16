@@ -93,7 +93,7 @@ Pada tabel diatas, menunjukkan bahwa tidak terdapat missing value dan data dupli
 Infomasi statistik masing-masing kolom
 | Statistik | age    | gender | impulse | pressurehight | pressurelow | glucose | kcm    | troponin |
 | --------- | ------ | ------ | ------- | ------------- | ----------- | ------- | ------ | -------- |
-| count     | 1319   | 1319   | 1319    | 1319          | 1319        | 1319    | 1319   | 1319     |
+| count     | 1319.000000   | 1319   | 1319    | 1319          | 1319        | 1319    | 1319   | 1319     |
 | mean      | 56.19  | 0.66   | 78.34   | 127.17        | 72.27       | 146.63  | 15.27  | 0.36     |
 | std       | 13.65  | 0.47   | 51.63   | 26.12         | 14.03       | 74.92   | 46.33  | 1.15     |
 | min       | 14.00  | 0.00   | 20.00   | 42.00         | 38.00       | 35.00   | 0.32   | 0.001    |
