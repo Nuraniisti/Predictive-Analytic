@@ -29,17 +29,11 @@ Solution Statements
 
 
 ## Data Understanding
-Dataset yang digunakan adalah Heart Disease Classification Dataset dengan 1319 sampel dan 9 kolom (8 fitur input, 1 kolom target). Dataset ini mencakup faktor risiko dan biomarker yang berkontribusi pada serangan jantung.   
+Dataset yang digunakan adalah Heart Disease Classification Dataset dengan 1.319 sampel dan 9 kolom. Dataset ini mencakup faktor risiko dan biomarker yang berkontribusi pada serangan jantung.   
 
 | Jumlah baris     |  Jumlah kolom    |    
 |------------------|------------------|        
 |      1.319       |       9          |       
-
-|  tipe data  |  jumlah kolom  |
-|-------------|----------------|
-|    integer  |        5       |
-|    float    |        3       |
-|    object   |        1       |
 
 Title : Heart Disease Classification Dataset   
 Source : Kaggle (https://www.kaggle.com/datasets/bharath011/heart-disease-classification-dataset/data)  
@@ -48,22 +42,19 @@ License : Open Database
 Visibility : Publik   
 Usability : 9.41
 
-- **Numerik** : `age`, `impulse`, `pressurehight`, `pressurelow`, `glucose`, `kcm`, `troponin`
-- **Target** : `class` yang dikonversi ke format numerik: 0 (negative), 1 (positive)
-
 ### Variabel
 
-| Kolom            | Deskripsi                                                       |
-|------------------|-----------------------------------------------------------------|
-| age              | Usia pasien (numerik, tahun)                                    |
-| gender           | Jenis kelamin ((0 = perempuan, 1 = laki-laki))                  |
-| impulse          | Denyut jantung (numerik, denyut per menit)                      |
-| pressurehight    | Tekanan darah atas (numerik, mmHg)                              |
-| pressurelow      | Tekanan darah bawah (numerik, mmHg)                             |
-| glucose          | Kadar gula darah (numerik, mg/dL)                               |
-| kcm              | Kalium, kadar CK-MB, biomarker kerusakan jantung (numerik).     |
-| troponin         | Kadar troponin, biomarker spesifik serangan jantung (numerik)   |
-| class            | Keberadaan serangan jantung. Target : 0 (negatif), 1 (positif)  |
+| Kolom            | Deskripsi                                           |
+|------------------|-----------------------------------------------------|
+| age              | Usia pasien                                         |
+| gender           | Jenis kelamin                                       |
+| impulse          | Denyut jantung                                      |
+| pressurehight    | Tekanan darah atas                                  |
+| pressurelow      | Tekanan darah bawah                                 |
+| glucose          | Kadar gula darah                                    |
+| kcm              | Kalium, kadar CK-MB, biomarker kerusakan jantung    |
+| troponin         | Kadar troponin, biomarker spesifik serangan jantung |
+| class            | Keberadaan serangan jantung                         |
 
 
 ## Exploratory Data Analysis (EDA)
@@ -80,8 +71,6 @@ Deskripsi tabel
 | 6  | kcm           | 1319           | float64 |
 | 7  | troponin      | 1319           | float64 |
 | 8  | class         | 1319           | object  |
-
-Mengubah nama kolom `impluse` menjadi `impulse`
 
 |  Data duplikat  |
 |-----------------|
@@ -129,7 +118,6 @@ Dari tabel diatas, diketahui bahwa :
   - Sebagian besar pasien (50%) memiliki troponin sangat rendah (0.006–0.0855), yang normal (< 0.04 ng/mL). Nilai tinggi kemungkinan terkait dengan kasus positif serangan jantung.
   - Variabilitas besar (std = 1.15) menunjukkan perbedaan signifikan antara pasien dengan dan tanpa serangan jantung.
 
-karena model hanya dapat memproses data numerik. Kolom 'class' dengan nilai kategorikal ('negative' dan 'positive') tidak dapat digunakan langsung oleh model, sehingga harus diubah menjadi numerik (0 untuk 'negative', 1 untuk 'positive') agar model dapat memahami dan mempelajari pola dari data
 
 Korelasi antar fitur
 ![image](https://github.com/user-attachments/assets/dfafc7ef-a8eb-4bf8-b618-1e01641bc429)
@@ -147,8 +135,19 @@ Distribusi kelas
 - Dataset menunjukkan ketidakseimbangan kelas, dengan kelas 1 (positive, menunjukkan serangan jantung) lebih dominan dibandingkan kelas 0 (negative).
 - ketidakseimbangan dapat menyebabkan model bias terhadap kelas mayoritas (positive). Maka akan digunakan teknik seperti SMOTE (Synthetic Minority Oversampling Technique) untuk menyeimbangkan data latih.
 
-## Data Preparation
-Melakukan standarisasi numerik untuk memastikan semua fitur memiliki skala yang seragam dengan mean 0 dan standar deviasi 1, sehingga algoritma machine learning seperti Logistic Regression atau XGBoost dapat bekerja secara optimal tanpa dipengaruhi oleh perbedaan skala asli fitur seperti age, impulse, pressurehight, pressurelow, glucose, kcm, dan troponin.
+## Data Preparation     
+Mengubah nama kolom 'impluse' diubah menjadi 'impulse' agar memudahkan dan tidak membingungkan dan mengubah kolom 'class' menjadi numerik (negative=0, positive=1), melakukan encoding kembali sebagai langkah permanen untuk mempersiapkan data untuk pelatihan model.    
+
+Melakukan standarisasi numerik untuk memastikan semua fitur memiliki skala yang seragam dengan mean 0 dan standar deviasi 1, sehingga algoritma machine learning seperti Logistic Regression atau XGBoost dapat bekerja secara optimal tanpa dipengaruhi oleh perbedaan skala asli fitur seperti age, impulse, pressurehight, pressurelow, glucose, kcm, dan troponin.   
+`scaler = StandardScaler()    
+numeric_features = ['age', 'impulse', 'pressurehight', 'pressurelow', 'glucose', 'kcm', 'troponin']     
+df[numeric_features] = scaler.fit_transform(df[numeric_features])`    
+
+- `scaler = StandardScaler()`-> Membuat objek StandardScaler dari library scikit-learn. StandardScaler adalah teknik standarisasi yang mengubah data sehingga memiliki mean = 0 dan standar deviasi = 1 (distribusi standar normal).
+- `numeric_features = ['age', 'impulse', 'pressurehight', 'pressurelow', 'glucose', 'kcm', 'troponin']` ->  mendefinisikan daftar kolom numerik dalam df yang akan diskalakan. Kolom ini dipilih karena berisi data numerik.
+- Kolom target `class` tidak diskalakan karena digunakan sebagai label untuk klasifikasi.
+- `scaler.fit_transform:
+fit`  -> Menghitung mean dan standar deviasi untuk setiap kolom dalam numeric_features.
 
 Pemisahan fitur dan target juga pembagian data train dan data test menjadi 80% train dan 20% test    
 `X = df.drop('class', axis=1)`   
@@ -165,9 +164,9 @@ Pemisahan fitur dan target juga pembagian data train dan data test menjadi 80% t
 `smote = SMOTE(random_state=42)`   
 `X_train_balanced, y_train_balanced = smote.fit_resample(X_train, y_train)`
 
-- SMOTE(random_state=42) -> Membuat objek SMOTE.
-- random_state=42 digunakan agar proses oversampling bisa direproduksi dan hasilnya sama setiap kali dijalankan.
-- smote.fit_resample(X_train, y_train) -> fit_resample() adalah metode utama SMOTE yang akan menganalisis distribusi kelas di y_train.
+- `SMOTE(random_state=42)` -> Membuat objek SMOTE.
+- `random_state=42` digunakan agar proses oversampling bisa direproduksi dan hasilnya sama setiap kali dijalankan.
+- `smote.fit_resample(X_train, y_train)` -> `fit_resample()` adalah metode utama SMOTE yang akan menganalisis distribusi kelas di `y_train`.
 - Menambahkan sampel sintetis ke kelas minoritas hingga distribusinya seimbang dengan kelas mayoritas.
 - Proses tersebut dilakukan hanya pada data pelatihan (x_train), bukan data uji, agar model tidak belajar dari data sintetis yang tidak realistis pada saat evaluasi.
 
@@ -186,13 +185,14 @@ Jumlah total data setelah SMOTE : 1294
 `lr_model = LogisticRegression(C=1.0, random_state=42)`   
 `lr_model.fit(X_train_balanced, y_train_balanced)`
 
-- LogisticRegression(...)  -> Membuat objek model regresi logistik untuk klasifikasi biner (atau multiclass).
-- C=1.0  -> Parameter regularisasi invers. Ini mengontrol seberapa banyak regularisasi yang diterapkan ke model :   
+dengan parameter :
+- `LogisticRegression(...)`  -> Membuat objek model regresi logistik untuk klasifikasi biner (atau multiclass).
+- `C=1.0`  -> Parameter regularisasi invers. Ini mengontrol seberapa banyak regularisasi yang diterapkan ke model :   
 Semakin besar C, semakin lemah regularisasi → model bisa overfit.   
 Semakin kecil C, semakin kuat regularisasi → model lebih sederhana dan bisa underfit.   
-C=1.0 adalah nilai default, artinya regularisasi dalam tingkat moderat.
-- random_state=42  -> Nilai acak untuk memastikan hasil yang reproducible atau hasil tidak berubah-ubah tiap dijalankan.
-- fit(X_train_balanced, y_train_balanced)  -> Melatih model dengan data training yang sudah di-balance dengan SMOTE
+`C=1.0` adalah nilai default, artinya regularisasi dalam tingkat moderat.
+- `random_state=42`  -> Nilai acak untuk memastikan hasil yang reproducible atau hasil tidak berubah-ubah tiap dijalankan.
+- `fit(X_train_balanced, y_train_balanced)`  -> Melatih model dengan data training yang sudah di-balance dengan SMOTE
 - Kelebihan : Sederhana, interpretable, cocok untuk baseline model.
 - Kekurangan : Tidak menangani hubungan non-linear dengan baik.
 
@@ -205,22 +205,25 @@ Probabilitas ini dibandingkan dengan threshold (biasanya 0.5) untuk menentukan k
 `xgb_model = XGBClassifier(n_estimators=100, learning_rate=0.1, max_depth=6, random_state=42)`   
 `xgb_model.fit(X_train_balanced, y_train_balanced)`
 
-- XGBClassifier(...) -> 	Memanggil constructor dari XGBoost Classifier (untuk klasifikasi).
-- n_estimators=100  ->	Jumlah decision tree (pohon keputusan) yang akan dibangun secara bertahap dalam proses boosting.    
+dengan parameter :   
+- `XGBClassifier(...)` -> 	Memanggil constructor dari XGBoost Classifier (untuk klasifikasi).
+- `n_estimators=100`  ->	Jumlah decision tree (pohon keputusan) yang akan dibangun secara bertahap dalam proses boosting.    
 Nilai umum : 100–1000.
-- learning_rate=0.1	 -> Ukuran langkah pembelajaran tiap pohon baru. Semakin kecil nilainya, maka model belajar lebih perlahan, lebih stabil dan bisa mencegah overfitting.   
+- `learning_rate=0.1`	 -> Ukuran langkah pembelajaran tiap pohon baru. Semakin kecil nilainya, maka model belajar lebih perlahan, lebih stabil dan bisa mencegah overfitting.   
 Default-nya adalah 0.3.
-- max_depth=6  ->	Kedalaman maksimal dari tiap pohon. Semakin besar, semakin kompleks pohonnya, artinya bisa overfit.    
-- random_state=42	-> Nilai acak untuk memastikan hasil yang reproducible atau hasil tidak berubah-ubah tiap dijalankan.
-- fit(X_train_balanced, y_train_balanced)  -> Melatih model dengan data training yang sudah di-balance dengan SMOTE
+- `max_depth=6`  ->	Kedalaman maksimal dari tiap pohon. Semakin besar, semakin kompleks pohonnya, artinya bisa overfit.    
+- `random_state=42`	-> Nilai acak untuk memastikan hasil yang reproducible atau hasil tidak berubah-ubah tiap dijalankan.
+- `fit(X_train_balanced, y_train_balanced)`  -> Melatih model dengan data training yang sudah di-balance dengan SMOTE
 - Kelebihan : Performa tinggi, menangani ketidakseimbangan kelas, dan memberikan feature importance.
 - Kekurangan : Rentan overfitting dan kurang cocok untuk data yang sangat imbalanced
+
 
 Cara kerja :
 - Model bekerja dengan membangun serangkaian pohon keputusan (decision trees) secara berurutan.
 - Setiap pohon baru dibuat untuk memperbaiki kesalahan (error) dari pohon sebelumnya.
 - Pada setiap iterasi, model meminimalkan loss function (seperti log-loss untuk klasifikasi) menggunakan teknik gradien.
-- Hasil akhir adalah gabungan dari semua pohon
+- Hasil akhir adalah gabungan dari semua pohon.
+
 
 ## Evaluation
 
