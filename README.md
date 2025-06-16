@@ -276,12 +276,17 @@ Evaluasi XGBoost :
 - True Positive (TP) = 161. Model benar memprediksi 161 sampel kelas 1 sebagai 1.   
 
 ### Kesimpulan :
-Model XGBoost memberikan performa yang lebih unggul dibandingkan Logistic Regression di semua metrik evaluasi, seperti accuracy, precision, recall, f1-score, dan AUC-ROC.
+Model XGBoost memberikan performa yang lebih unggul untuk dapat memprediksi keberadaan serangan jantung dibandingkan Logistic Regression di semua metrik evaluasi, seperti accuracy, precision, recall, f1-score, dan AUC-ROC.
 AUC-ROC XGBoost sebesar 0.995 menunjukkan bahwa model memiliki kemampuan sangat tinggi dalam membedakan antara kelas positif dan negatif.
 Confusion matrix menunjukkan tingkat kesalahan yang sangat kecil (hanya 4 kesalahan dari 264 data), dengan hanya 2 data kelas 0 dan 2 data kelas 1 yang salah klasifikasi.
 
 Sementara itu, model Logistic Regression masih menunjukkan performa yang cukup baik, dengan akurasi 79% dan AUC-ROC 0.887, serta hasil metrik yang cukup seimbang antara precision dan recall.
 Namun, Logistic Regression masih mengalami kesulitan dalam mengklasifikasi kelas positif, terlihat dari 42 data kelas 1 yang salah diklasifikasikan sebagai kelas 0.
+
+
+
+
+
 
 -------------
 
