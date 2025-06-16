@@ -182,7 +182,7 @@ Jumlah total data setelah SMOTE : 1294
 |---------------------|--------------------|
 |         647         |         647        |
 
-### 6. Modeling
+## Modeling
 **Logistic Regression** dengan parameter :    
 `lr_model = LogisticRegression(C=1.0, random_state=42)`
 `lr_model.fit(X_train_balanced, y_train_balanced)`
