@@ -72,6 +72,12 @@ Deskripsi tabel
 | 7  | troponin      | 1319           | float64 |
 | 8  | class         | 1319           | object  |
 
+|  tipe data  |  jumlah kolom  |
+|-------------|----------------|
+|    integer  |        5       |
+|    float    |        3       |
+|    object   |        1       |
+
 |  Data duplikat  |
 |-----------------|
 |        0        |
