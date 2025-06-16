@@ -139,9 +139,9 @@ Distribusi kelas
 Mengubah nama kolom 'impluse' diubah menjadi 'impulse' agar memudahkan dan tidak membingungkan dan mengubah kolom 'class' menjadi numerik (negative=0, positive=1), melakukan encoding kembali sebagai langkah permanen untuk mempersiapkan data untuk pelatihan model.    
 
 Melakukan standarisasi numerik untuk memastikan semua fitur memiliki skala yang seragam dengan mean 0 dan standar deviasi 1, sehingga algoritma machine learning seperti Logistic Regression atau XGBoost dapat bekerja secara optimal tanpa dipengaruhi oleh perbedaan skala asli fitur seperti age, impulse, pressurehight, pressurelow, glucose, kcm, dan troponin.   
-`scaler = StandardScaler()    
-numeric_features = ['age', 'impulse', 'pressurehight', 'pressurelow', 'glucose', 'kcm', 'troponin']     
-df[numeric_features] = scaler.fit_transform(df[numeric_features])`    
+`scaler = StandardScaler()`      
+`numeric_features = ['age', 'impulse', 'pressurehight', 'pressurelow', 'glucose', 'kcm', 'troponin']`      
+`df[numeric_features] = scaler.fit_transform(df[numeric_features])`    
 
 - `scaler = StandardScaler()`-> Membuat objek StandardScaler dari library scikit-learn. StandardScaler adalah teknik standarisasi yang mengubah data sehingga memiliki mean = 0 dan standar deviasi = 1 (distribusi standar normal).
 - `numeric_features = ['age', 'impulse', 'pressurehight', 'pressurelow', 'glucose', 'kcm', 'troponin']` ->  mendefinisikan daftar kolom numerik dalam df yang akan diskalakan. Kolom ini dipilih karena berisi data numerik.
