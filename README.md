@@ -152,8 +152,8 @@ Distribusi kelas
 Melakukan standarisasi numerik untuk memastikan semua fitur memiliki skala yang seragam dengan mean 0 dan standar deviasi 1, sehingga algoritma machine learning seperti Logistic Regression atau XGBoost dapat bekerja secara optimal tanpa dipengaruhi oleh perbedaan skala asli fitur seperti age, impulse, pressurehight, pressurelow, glucose, kcm, dan troponin.
 
 Pemisahan fitur dan target juga pembagian data train dan data test menjadi 80% train dan 20% test    
-`X = df.drop('class', axis=1)`
-`y = df['class']`
+`X = df.drop('class', axis=1)`   
+`y = df['class']`    
 
 `X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)`
 
@@ -163,7 +163,7 @@ Pemisahan fitur dan target juga pembagian data train dan data test menjadi 80% t
  
 **SMOTE** diterapkan pada data latih untuk menyeimbangkan jumlah kelas, dimana SMOTE adalah teknik oversampling yang diimpor dari pustaka imblearn (imbalanced-learn), digunakan untuk menyeimbangkan dataset dengan ketidakseimbangan kelas dengan membuat sampel sintetis untuk kelas minoritas.
 
-`smote = SMOTE(random_state=42)`
+`smote = SMOTE(random_state=42)`   
 `X_train_balanced, y_train_balanced = smote.fit_resample(X_train, y_train)`
 
 - SMOTE(random_state=42) -> Membuat objek SMOTE.
@@ -184,7 +184,7 @@ Jumlah total data setelah SMOTE : 1294
 
 ## Modeling
 **Logistic Regression** dengan parameter :    
-`lr_model = LogisticRegression(C=1.0, random_state=42)`
+`lr_model = LogisticRegression(C=1.0, random_state=42)`   
 `lr_model.fit(X_train_balanced, y_train_balanced)`
 
 - LogisticRegression(...)  -> Membuat objek model regresi logistik untuk klasifikasi biner (atau multiclass).
@@ -203,7 +203,7 @@ Probabilitas ini dibandingkan dengan threshold (biasanya 0.5) untuk menentukan k
 
   
 **XGBoost Classifier** dengan parameter :     
-`xgb_model = XGBClassifier(n_estimators=100, learning_rate=0.1, max_depth=6, random_state=42)`
+`xgb_model = XGBClassifier(n_estimators=100, learning_rate=0.1, max_depth=6, random_state=42)`   
 `xgb_model.fit(X_train_balanced, y_train_balanced)`
 
 - XGBClassifier(...) -> 	Memanggil constructor dari XGBoost Classifier (untuk klasifikasi).
