@@ -1,25 +1,25 @@
 # Heart Attack Prediction using Logistic Regression and XGBoost
 
 
-### 1. Domain Proyek
+## Domain Proyek
 Penyakit kardiovaskular (CVD) adalah penyebab kematian nomor satu di dunia, menyumbang sekitar 17,9 juta kematian setiap tahun menurut World Health Organization (WHO). Serangan jantung, salah satu manifestasi utama CVD, sering terjadi secara mendadak dan memerlukan deteksi dini untuk mencegah konsekuensi fatal. Faktor risiko seperti usia, tekanan darah, kadar gula darah, serta biomarker seperti CK-MB dan troponin memainkan peran penting dalam diagnosis. Dengan kemajuan machine learning, data klinis dapat digunakan untuk memprediksi risiko serangan jantung secara akurat, mendukung tenaga medis dalam pengambilan keputusan cepat.
 
 Mengapa Masalah Ini Harus Diselesaikan?
 Prediksi dini serangan jantung dapat meningkatkan peluang pasien untuk mendapatkan intervensi medis tepat waktu, mengurangi angka kematian, dan menekan biaya perawatan. Model prediktif berbasis machine learning memungkinkan identifikasi pasien berisiko tinggi secara efisien, terutama di fasilitas kesehatan dengan sumber daya terbatas. Selain itu, model ini dapat memberikan wawasan tentang faktor risiko utama, membantu pencegahan dan edukasi kesehatan.
 
-Referensi :
-[1] World Health Organization, "Cardiovascular diseases (CVDs)," WHO, 2021. [Online]. Available: https://www.who.int/news-room/fact-sheets/detail/cardiovascular-diseases-(cvds).   
+Referensi :   
+[1] World Health Organization, "Cardiovascular diseases (CVDs)," WHO, 2021. [Online]. Available: https://www.who.int/news-room/fact-sheets/detail/cardiovascular-diseases-(cvds).      
 [2] R. Shouval et al., "Machine learning for prediction of 30-day mortality in patients with acute myocardial infarction," European Heart Journal, vol. 40, no. 14, pp. 1153–1161, 2019, doi: 10.1093/eurheartj/ehz057.
 
 
-### 2. Business Understanding
+## Business Understanding
 Problem Statements
 - Bagaimana cara memprediksi keberadaan serangan jantung (positif/negatif) berdasarkan fitur klinis seperti usia, jenis kelamin, detak jantung, tekanan darah, kadar gula darah, CK-MB, dan troponin?   
 Data klinis kompleks dan memerlukan analisis canggih untuk menghasilkan prediksi yang akurat, yang dapat membantu tenaga medis dalam diagnosis dini.  
 - Bagaimana cara memastikan model prediktif memiliki performa yang optimal, untuk mendukung aplikasi medis?   
 Dalam konteks medis, false negatives (gagal mendeteksi serangan jantung) dapat berakibat fatal, sehingga model harus dioptimalkan untuk recall tinggi tanpa mengorbankan precision.
 
-Goals 
+Goals    
 tujuan untuk menyelesaikan permasalahan diatas yaitu :  
 - Membangun model machine learning yang dapat memprediksi keberadaan serangan jantung dengan akurasi, precision, dan recall yang tinggi berdasarkan fitur klinis.  
 - Memilih model terbaik yang andal untuk konteks medis, dengan fokus pada minimisasi false negatives dan interpretasi faktor risiko utama.
@@ -29,15 +29,19 @@ Solution Statements
 - Model akan dievaluasi menggunakan metrik akurasi, precision, recall, F1-score, dan AUC-ROC untuk mendapatkan model terbaik.
 
 
-### 3. Data Understanding
+## Data Understanding
 Dataset yang digunakan adalah Heart Disease Classification Dataset dengan 1319 sampel dan 9 kolom (8 fitur input, 1 kolom target). Dataset ini mencakup faktor risiko dan biomarker yang berkontribusi pada serangan jantung.   
 
-| Jumlah baris     |  Jumlah kolom    |        |  tipe data  |  jumlah kolom  |
-|------------------|------------------|        |-------------|----------------|
-|      1.319       |       9          |        |    integer  |        5       |
-                                               |    float    |        3       |
-                                               |    object   |        1       |
-                                               
+| Jumlah baris     |  Jumlah kolom    |    
+|------------------|------------------|        
+|      1.319       |       9          |       
+
+|  tipe data  |  jumlah kolom  |
+|-------------|----------------|
+|    integer  |        5       |
+|    float    |        3       |
+|    object   |        1       |
+
 Title : Heart Disease Classification Dataset   
 Source : Kaggle (https://www.kaggle.com/datasets/bharath011/heart-disease-classification-dataset/data)  
 Owner : Bharath_011   
@@ -63,7 +67,7 @@ Usability : 9.41
 | class            | Keberadaan serangan jantung. Target : 0 (negatif), 1 (positif)  |
 
 
-### 4. Exploratory Data Analysis (EDA)
+## Exploratory Data Analysis (EDA)
 Deskripsi tabel
 
 | No | Column        | Non-Null Count | Dtype   |
@@ -142,7 +146,7 @@ Distribusi kelas
 - Dataset menunjukkan ketidakseimbangan kelas, dengan kelas 1 (positive, menunjukkan serangan jantung) lebih dominan dibandingkan kelas 0 (negative).
 - ketidakseimbangan dapat menyebabkan model bias terhadap kelas mayoritas (positive). Maka akan digunakan teknik seperti SMOTE (Synthetic Minority Oversampling Technique) untuk menyeimbangkan data latih.
 
-### 5. Data Preparation
+## Data Preparation
 Melakukan standarisasi numerik untuk memastikan semua fitur memiliki skala yang seragam dengan mean 0 dan standar deviasi 1, sehingga algoritma machine learning seperti Logistic Regression atau XGBoost dapat bekerja secara optimal tanpa dipengaruhi oleh perbedaan skala asli fitur seperti age, impulse, pressurehight, pressurelow, glucose, kcm, dan troponin.
 
 Pemisahan fitur dan target juga pembagian data train dan data test menjadi 80% train dan 20% test
@@ -191,7 +195,6 @@ C=1.0 adalah nilai default, artinya regularisasi dalam tingkat moderat.
 - Kelebihan : Sederhana, interpretable, cocok untuk baseline model.
 - Kekurangan : Tidak menangani hubungan non-linear dengan baik.
 
-Cara kerja :
 Cara kerja :    
 - Model menghitung linear combination yang diproses dengan fungsi sigmoid/logistic untuk menghasilkan probabilitas.
 Probabilitas ini dibandingkan dengan threshold (biasanya 0.5) untuk menentukan kelas.
@@ -218,7 +221,7 @@ Cara kerja :
 - Pada setiap iterasi, model meminimalkan loss function (seperti log-loss untuk klasifikasi) menggunakan teknik gradien.
 - Hasil akhir adalah gabungan dari semua pohon
 
-### 7. Evaluation
+## Evaluation
 
 #### Logistic Regression
 Evaluasi Logistic Regression :
@@ -272,7 +275,7 @@ Confusion matrix
 - False Negative (FN) = 2. Model salah memprediksi 2 sampel kelas 1 sebagai 0.
 - True Positive (TP) = 161. Model benar memprediksi 161 sampel kelas 1 sebagai 1.   
 
-#### Kesimpulan :
+### Kesimpulan :
 Model XGBoost memberikan performa yang lebih unggul dibandingkan Logistic Regression di semua metrik evaluasi, seperti accuracy, precision, recall, f1-score, dan AUC-ROC.
 AUC-ROC XGBoost sebesar 0.995 menunjukkan bahwa model memiliki kemampuan sangat tinggi dalam membedakan antara kelas positif dan negatif.
 Confusion matrix menunjukkan tingkat kesalahan yang sangat kecil (hanya 4 kesalahan dari 264 data), dengan hanya 2 data kelas 0 dan 2 data kelas 1 yang salah klasifikasi.
