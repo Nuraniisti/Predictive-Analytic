@@ -233,16 +233,17 @@ Evaluasi Logistic Regression :
            1       0.90      0.74      0.81       163
 
     accuracy                           0.79       264
-   macro avg       0.79      0.80      0.78       264
-weighted avg       0.81      0.79      0.79       264
+  `macro avg       0.79      0.80      0.78       264
+weighted avg       0.81      0.79      0.79       264`
 
-AUC-ROC (Logistic Regression) : 0.8872927170017615
+`AUC-ROC (Logistic Regression) : 0.8872927170017615`
 
 Hasil evaluasi :   
 - Tidak terlalu bias ke salah satu kelas.
 - AUC-ROC tinggi menunjukkan kemampuan klasifikasinya sudah baik.
 - F1-score dan precision/recall seimbang
 
+Confusion matrix
 ![image](https://github.com/user-attachments/assets/11a531df-71aa-41e4-8438-444c36ce4f65)
    
 - True Negative (TN) = 87. Model benar memprediksi 87 sampel kelas 0 sebagai 0.
@@ -261,15 +262,15 @@ Evaluasi XGBoost :
            1       0.99      0.99      0.99       163
 
     accuracy                           0.98       264
-   macro avg       0.98      0.98      0.98       264
-weighted avg       0.98      0.98      0.98       264
+  `macro avg       0.98      0.98      0.98       264
+weighted avg       0.98      0.98      0.98       264`
 
-AUC-ROC (XGBoost) : 0.9950191338152221
+`AUC-ROC (XGBoost) : 0.9950191338152221`
    
 - dibandingkan dengan hasil evaluasi model logistic regression, XGBoost unggul jauh di semua metrik dibanding Logistic Regression.
 - AUC-ROC sangat tinggi menunjukkan kemampuan klasifikasinya sangat baik.
 
-Confusion matrix 
+Confusion matrix    
 ![image](https://github.com/user-attachments/assets/c20fa139-92d2-4c29-8137-1e29c1680600)
   
 - True Negative (TN) = 99. Model benar memprediksi 99 sampel kelas 0 sebagai 0.
@@ -285,6 +286,6 @@ Confusion matrix menunjukkan tingkat kesalahan yang sangat kecil (hanya 4 kesala
 Sementara itu, model Logistic Regression masih menunjukkan performa yang cukup baik, dengan akurasi 79% dan AUC-ROC 0.887, serta hasil metrik yang cukup seimbang antara precision dan recall.
 Namun, Logistic Regression masih mengalami kesulitan dalam mengklasifikasi kelas positif, terlihat dari 42 data kelas 1 yang salah diklasifikasikan sebagai kelas 0.
 
-
+-------------
 
 
