@@ -1,5 +1,4 @@
-# Heart Attack Prediction using Logistic Regression and XGBoost
-
+# Laporan Project Predictive Analytics : Heart Disease Classification
 
 ## Domain Proyek
 Penyakit kardiovaskular (CVD) adalah penyebab kematian nomor satu di dunia, menyumbang sekitar 17,9 juta kematian setiap tahun menurut World Health Organization (WHO). Serangan jantung, salah satu manifestasi utama CVD, sering terjadi secara mendadak dan memerlukan deteksi dini untuk mencegah konsekuensi fatal. Faktor risiko seperti usia, tekanan darah, kadar gula darah, serta biomarker seperti CK-MB dan troponin memainkan peran penting dalam diagnosis. Dengan kemajuan machine learning, data klinis dapat digunakan untuk memprediksi risiko serangan jantung secara akurat, mendukung tenaga medis dalam pengambilan keputusan cepat.
