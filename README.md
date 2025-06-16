@@ -135,11 +135,13 @@ karena model hanya dapat memproses data numerik. Kolom 'class' dengan nilai kate
 Korelasi antar fitur
 ![image](https://github.com/user-attachments/assets/dfafc7ef-a8eb-4bf8-b618-1e01641bc429)
     
-- Pressurehight dan Pressurelow: Korelasi = 0.59 (sedang, positif) menunjukkan tekanan darah sistolik dan diastolik memiliki korelasi positif sedang, wajar karena keduanya mengukur tekanan darah secara keseluruhan.
+- Pressurehight dan Pressurelow -> Korelasi = 0.59 (sedang, positif) menunjukkan tekanan darah sistolik dan diastolik memiliki korelasi positif sedang, wajar karena keduanya mengukur tekanan darah secara keseluruhan.
 - troponin (0.23), age (0.24), dan kcm (0.22) adalah prediktor utama serangan jantung berdasarkan korelasi dengan class. Fitur lain seperti impulse dan glucose memiliki pengaruh minimal.
 - Korelasi rendah secara keseluruhan menunjukkan pentingnya model seperti XGBoost untuk menangkap pola kompleks.
 
-Distribusi kelas 
+
+Distribusi kelas
+
 ![image](https://github.com/user-attachments/assets/4ea0cf3f-c233-4244-bc28-609e4978b1f7)
     
 - Kelas 0 (negative) = 509 sampel, Kelas 1 (positive) = 810 sampel dari total 1319 sampel.
